@@ -1,7 +1,8 @@
 # Awesome LLM Agent Orchestration Papers
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Last Updated](https://img.shields.io/badge/Last%20Updated-2026--07--01-blue)
+![Last Updated](https://img.shields.io/badge/Last%20Updated-2026--07--02-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-green)
 
 > A curated research map for **LLM agent scheduling, orchestration, routing, tool dispatch, multi-agent coordination, and workflow optimization**.
@@ -12,6 +13,7 @@
 
 ## News
 
+- `2026-07-02`: Refocused the list toward recent orchestra/router work, added 2026 agent-routing and multi-agent-orchestration papers, and switched the public repository to MIT licensing.
 - `2026-07-01`: Initial version. Built a taxonomy-first paper list for LLM agent orchestration.
 
 ---
@@ -28,7 +30,7 @@
   - [Multi-Agent Collaboration and Team Orchestration](#multi-agent-collaboration-and-team-orchestration)
   - [Model Routing, Agent Routing, Cascades, and MoE Routers](#model-routing-agent-routing-cascades-and-moe-routers)
   - [Workflow Graphs, Runtime Scheduling, Memory, and Optimization](#workflow-graphs-runtime-scheduling-memory-and-optimization)
-  - [Embodied, Web, GUI, and Software-Engineering Agents](#embodied-web-gui-and-software-engineering-agents)
+  - [Recent Agentic Applications and Production Orchestration](#recent-agentic-applications-and-production-orchestration)
   - [Benchmarks and Evaluation](#benchmarks-and-evaluation)
 - [Resources](#resources)
 - [Contributing](#contributing)
@@ -75,16 +77,16 @@ This list prioritizes work directly related to the stack above. Pure prompt engi
 
 If you only read ten papers first:
 
-1. **[ReAct](https://arxiv.org/abs/2210.03629)** — ICLR 2023. The basic reason-act-observe loop.
-2. **[Toolformer](https://arxiv.org/abs/2302.04761)** — NeurIPS 2023. Learning when and how to call tools.
-3. **[HuggingGPT](https://arxiv.org/abs/2303.17580)** — NeurIPS 2023. LLM as controller over specialist models.
-4. **[ToolLLM](https://arxiv.org/abs/2307.16789)** — ICLR 2024. Large-scale API instruction tuning and tool-use evaluation.
-5. **[LLMCompiler](https://proceedings.mlr.press/v235/kim24y.html)** — ICML 2024. Dependency-aware parallel function calling.
-6. **[MetaGPT](https://arxiv.org/abs/2308.00352)** — ICLR 2024. SOP-driven multi-agent software workflow.
-7. **[AgentVerse](https://arxiv.org/abs/2308.10848)** — ICLR 2024. Multi-agent collaboration pipeline with recruitment and evaluation.
-8. **[GPTSwarm](https://proceedings.mlr.press/v235/zhuge24a.html)** — ICML 2024. Agents as optimizable graphs.
-9. **[RouteLLM](https://arxiv.org/abs/2406.18665)** and **[RouterBench](https://arxiv.org/abs/2403.12031)** — routing cost-quality tradeoffs.
-10. **[AgentBench](https://arxiv.org/abs/2308.03688)**, **[WebArena](https://arxiv.org/abs/2307.13854)**, and **[SWE-bench](https://arxiv.org/abs/2310.06770)** — agent evaluation foundations.
+1. **[Uno-Orchestra](https://arxiv.org/abs/2605.05007)** — arXiv 2026. Selective delegation over decomposition depth, worker choice, and inference budget.
+2. **[Agent-as-a-Router](https://arxiv.org/abs/2606.22902)** — arXiv 2026. Treats routing as a context-action-feedback loop with execution-grounded memory.
+3. **[INFRAMIND](https://arxiv.org/abs/2606.11440)** — arXiv 2026. Infrastructure-aware planning, per-step routing, and scheduling for multi-agent pipelines.
+4. **[Scaling Enterprise Agent Routing](https://arxiv.org/abs/2606.17519)** — arXiv 2026. Studies routing degradation and recovery in a 110-agent, 584-tool production catalog.
+5. **[LEMON](https://arxiv.org/abs/2605.14483)** — arXiv 2026. Learns executable multi-agent orchestration specifications with counterfactual RL.
+6. **[When Parallelism Pays Off](https://arxiv.org/abs/2606.00953)** — arXiv 2026. Frames multi-agent coding orchestration as cohesion-aware graph partitioning.
+7. **[PerspectiveGap](https://arxiv.org/abs/2606.08878)** — arXiv 2026. Benchmark for composing multi-agent orchestration prompts.
+8. **[The Workload-Router-Pool Architecture](https://arxiv.org/abs/2603.21354)** — arXiv 2026. Systems view of workload-aware inference routing for agentic workloads.
+9. **[LLMCompiler](https://proceedings.mlr.press/v235/kim24y.html)** — ICML 2024. Dependency-aware parallel function calling.
+10. **[GPTSwarm](https://proceedings.mlr.press/v235/zhuge24a.html)** — ICML 2024. Language agents represented and optimized as graphs.
 
 ---
 
@@ -120,49 +122,40 @@ If you only read ten papers first:
 
 ### Planning, Control Loops, and Search
 
-1. **[Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903)** — NeurIPS 2022. `reasoning`
-   - Pre-agent foundation for explicit intermediate reasoning.
-
-2. **[Self-Consistency Improves Chain of Thought Reasoning in Language Models](https://arxiv.org/abs/2203.11171)** — ICLR 2023. `sampling` `selection`
-   - Introduces sample-and-select, an early form of reasoning-path routing.
-
-3. **[Least-to-Most Prompting Enables Complex Reasoning in Large Language Models](https://arxiv.org/abs/2205.10625)** — ICLR 2023. `decomposition`
-   - Decomposes hard tasks into easier subtasks, a direct precursor to task planning.
-
-4. **[ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)** — ICLR 2023. `plan-act-observe`
+1. **[ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)** — ICLR 2023. `plan-act-observe`
    - The canonical loop for interleaving reasoning, environment action, and observation.
 
-5. **[Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models](https://aclanthology.org/2023.acl-long.147/)** — ACL 2023. `planner`
+2. **[Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models](https://aclanthology.org/2023.acl-long.147/)** — ACL 2023. `planner`
    - Separates plan creation from step execution.
 
-6. **[Reasoning with Language Model is Planning with World Model](https://aclanthology.org/2023.emnlp-main.507/)** — EMNLP 2023. `RAP` `world-model` `MCTS`
+3. **[Reasoning with Language Model is Planning with World Model](https://aclanthology.org/2023.emnlp-main.507/)** — EMNLP 2023. `RAP` `world-model` `MCTS`
    - Uses an LLM as both world model and reasoning agent, with MCTS-style planning.
 
-7. **[Tree of Thoughts: Deliberate Problem Solving with Large Language Models](https://arxiv.org/abs/2305.10601)** — NeurIPS 2023. `tree-search`
+4. **[Tree of Thoughts: Deliberate Problem Solving with Large Language Models](https://arxiv.org/abs/2305.10601)** — NeurIPS 2023. `tree-search`
    - Turns reasoning into tree search with self-evaluation and backtracking.
 
-8. **[Graph of Thoughts: Solving Elaborate Problems with Large Language Models](https://ojs.aaai.org/index.php/AAAI/article/view/29720)** — AAAI 2024. `graph-search`
+5. **[Graph of Thoughts: Solving Elaborate Problems with Large Language Models](https://ojs.aaai.org/index.php/AAAI/article/view/29720)** — AAAI 2024. `graph-search`
    - Generalizes thought structures from chains/trees to arbitrary graphs.
 
-9. **[Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366)** — NeurIPS 2023. `reflection` `memory`
+6. **[Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366)** — NeurIPS 2023. `reflection` `memory`
    - Adds verbal feedback and episodic memory for trial-to-trial improvement.
 
-10. **[Self-Refine: Iterative Refinement with Self-Feedback](https://arxiv.org/abs/2303.17651)** — NeurIPS 2023. `self-feedback`
+7. **[Self-Refine: Iterative Refinement with Self-Feedback](https://arxiv.org/abs/2303.17651)** — NeurIPS 2023. `self-feedback`
     - Generator, feedback provider, and refiner can be the same LLM.
 
-11. **[LLM+P: Empowering Large Language Models with Optimal Planning Proficiency](https://arxiv.org/abs/2304.11477)** — arXiv 2023. `symbolic-planner` `PDDL`
+8. **[LLM+P: Empowering Large Language Models with Optimal Planning Proficiency](https://arxiv.org/abs/2304.11477)** — arXiv 2023. `symbolic-planner` `PDDL`
     - Routes natural-language planning problems through classical planners.
 
-12. **[PromptAgent: Strategic Planning with Language Models Enables Expert-level Prompt Optimization](https://arxiv.org/abs/2310.16427)** — ICLR 2024. `prompt-agent` `MCTS`
+9. **[PromptAgent: Strategic Planning with Language Models Enables Expert-level Prompt Optimization](https://arxiv.org/abs/2310.16427)** — ICLR 2024. `prompt-agent` `MCTS`
     - Treats prompt optimization as search over prompt states and actions.
 
-13. **[Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models](https://proceedings.mlr.press/v235/zhou24r.html)** — ICML 2024. `LATS` `agent-search`
+10. **[Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models](https://proceedings.mlr.press/v235/zhou24r.html)** — ICML 2024. `LATS` `agent-search`
     - Integrates reasoning, acting, planning, value estimation, and reflection.
 
-14. **[Planning with Language Models Through the Lens of Efficiency](https://proceedings.neurips.cc/paper_files/paper/2024/hash/fa080fe0f218871faec1d8ba20e491d5-Abstract-Conference.html)** — NeurIPS 2024. `planning` `efficiency`
+11. **[Planning with Language Models Through the Lens of Efficiency](https://proceedings.neurips.cc/paper_files/paper/2024/hash/fa080fe0f218871faec1d8ba20e491d5-Abstract-Conference.html)** — NeurIPS 2024. `planning` `efficiency`
     - Analyzes when planning with LMs is computationally efficient.
 
-15. **[Position: LLMs Can't Plan, But Can Help Planning in LLM-Modulo Frameworks](https://arxiv.org/abs/2402.01817)** — ICML 2024. `position` `LLM-modulo`
+12. **[Position: LLMs Can't Plan, But Can Help Planning in LLM-Modulo Frameworks](https://arxiv.org/abs/2402.01817)** — ICML 2024. `position` `LLM-modulo`
     - Argues for routing LLMs into planner/verifier/tool modules rather than relying on pure generation.
 
 ---
@@ -278,39 +271,48 @@ If you only read ten papers first:
 18. **[PerspectiveGap: A Benchmark for Multi-Agent Orchestration Prompting](https://arxiv.org/abs/2606.08878)** — arXiv 2026. `benchmark` `prompting`
     - Tests prompt-level orchestration of agents with different perspectives.
 
+19. **[LEMON: Learning Executable Multi-Agent Orchestration via Counterfactual Reinforcement Learning](https://arxiv.org/abs/2605.14483)** — arXiv 2026. `counterfactual-RL` `orchestration-policy`
+    - Learns role design, capacity assignment, and dependency structure as a single executable orchestration specification.
+
+20. **[INFRAMIND: Infrastructure-Aware Multi-Agent Orchestration](https://arxiv.org/abs/2606.11440)** — arXiv 2026. `infra-aware` `planner-router-scheduler`
+    - Conditions topology, role selection, model calls, and queue scheduling on real-time infrastructure state.
+
+21. **[COHORT: Collaborative Orchestration for Hardening via Offensive Replay on Emulated Topologies](https://arxiv.org/abs/2606.30479)** — arXiv 2026. `security` `role-decomposed-workflow`
+    - Uses a role-decomposed multi-agent workflow to propose, implement, critique, and replay-test network mitigations.
+
 ---
 
 ### Model Routing, Agent Routing, Cascades, and MoE Routers
 
-1. **[FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance](https://arxiv.org/abs/2305.05176)** — TMLR 2024. `cascade` `cost-quality`
-   - Learns LLM cascades that can reduce cost while preserving or improving accuracy.
-
-2. **[LLM-Blender: Ensembling Large Language Models with Pairwise Ranking and Generative Fusion](https://arxiv.org/abs/2306.02561)** — ACL 2023. `model-ensemble` `ranking`
-   - Ranks outputs from multiple LLMs and fuses them into a final answer.
-
-3. **[RouterBench: A Benchmark for Multi-LLM Routing System](https://arxiv.org/abs/2403.12031)** — arXiv 2024. `routing-benchmark`
+1. **[RouterBench: A Benchmark for Multi-LLM Routing System](https://arxiv.org/abs/2403.12031)** — arXiv 2024. `routing-benchmark`
    - Standardizes LLM router evaluation with many model-response outcomes.
 
-4. **[RouteLLM: Learning to Route LLMs with Preference Data](https://arxiv.org/abs/2406.18665)** — ICLR 2025 / OpenReview. `preference-router`
+2. **[RouteLLM: Learning to Route LLMs with Preference Data](https://arxiv.org/abs/2406.18665)** — ICLR 2025 / OpenReview. `preference-router`
    - Trains routers that choose between strong and weak models under cost-quality budgets.
 
-5. **[Mixture-of-Agents Enhances Large Language Model Capabilities](https://arxiv.org/abs/2406.04692)** — ICLR 2025. `agent-routing` `ensemble`
+3. **[Mixture-of-Agents Enhances Large Language Model Capabilities](https://arxiv.org/abs/2406.04692)** — ICLR 2025. `agent-routing` `ensemble`
    - Also relevant as a model/agent composition router.
 
-6. **[Leveraging Uncertainty Estimation for Efficient LLM Routing](https://arxiv.org/abs/2502.11021)** — arXiv 2025. `uncertainty-router`
+4. **[Leveraging Uncertainty Estimation for Efficient LLM Routing](https://arxiv.org/abs/2502.11021)** — arXiv 2025. `uncertainty-router`
    - Routes based on confidence/uncertainty rather than only static task type.
 
-7. **[Arch-Router: Aligning LLM Routing with Human Preferences](https://arxiv.org/abs/2506.16655)** — arXiv 2025. `human-preference` `router`
+5. **[Arch-Router: Aligning LLM Routing with Human Preferences](https://arxiv.org/abs/2506.16655)** — arXiv 2025. `human-preference` `router`
    - Aligns routing behavior with preference signals.
 
-8. **[Adaptive LLM Routing under Budget Constraints](https://arxiv.org/abs/2508.21141)** — arXiv 2025. `budget-aware`
+6. **[Adaptive LLM Routing under Budget Constraints](https://arxiv.org/abs/2508.21141)** — arXiv 2025. `budget-aware`
    - Formulates routing under explicit budget constraints.
 
-9. **[LLM Routing with Dueling Feedback](https://arxiv.org/abs/2510.00841)** — arXiv 2025. `dueling-feedback`
+7. **[LLM Routing with Dueling Feedback](https://arxiv.org/abs/2510.00841)** — arXiv 2025. `dueling-feedback`
    - Uses pairwise feedback to improve router decisions.
 
-10. **[LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing](https://arxiv.org/abs/2601.07206)** — arXiv 2026. `routing-benchmark`
+8. **[LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing](https://arxiv.org/abs/2601.07206)** — arXiv 2026. `routing-benchmark`
     - Expands benchmark coverage for routing across models and tasks.
+
+9. **[Signal Driven Decision Routing for Mixture-of-Modality Models](https://arxiv.org/abs/2603.04444)** — arXiv 2026. `semantic-router` `multimodal-routing`
+   - Introduces vLLM Semantic Router for signal-driven request routing across modality-specialized models.
+
+10. **[LLM Routing as Reasoning: A MaxSAT View](https://arxiv.org/abs/2603.13612)** — arXiv 2026. `reasoning-router` `MaxSAT`
+    - Frames routing as a constrained reasoning problem rather than a static classifier.
 
 11. **[Reward-Based Online LLM Routing via NeuralUCB](https://arxiv.org/abs/2603.30035)** — arXiv 2026. `online-routing` `bandit`
     - Online router using bandit-style uncertainty exploration.
@@ -318,29 +320,23 @@ If you only read ten papers first:
 12. **[Explainable Model Routing for Agentic Workflows](https://arxiv.org/abs/2604.03527)** — arXiv 2026. `agentic-workflow` `explainable-router`
     - Focuses on routing decisions inside multi-stage agent workflows.
 
-13. **[Learning Agent Routing From Early Experience](https://arxiv.org/abs/2605.07180)** — arXiv 2026. `agent-router`
+13. **[The Workload-Router-Pool Architecture for LLM Inference Optimization: A Vision Paper from the vLLM Semantic Router Project](https://arxiv.org/abs/2603.21354)** — arXiv 2026. `semantic-router` `serving-architecture`
+    - Distills workload-aware inference optimization into workload, router, and pool layers for agentic and multimodal workloads.
+
+14. **[Accuracy Is Speed: Towards Long-Context-Aware Routing for Distributed LLM Serving](https://arxiv.org/abs/2604.15732)** — arXiv 2026. `long-context-routing` `serving`
+    - Routes long-context requests by capability because retries make answer accuracy part of end-to-end latency.
+
+15. **[Learning Agent Routing From Early Experience](https://arxiv.org/abs/2605.07180)** — arXiv 2026. `agent-router`
     - Learns which agent should handle a task from early trajectory signals.
 
-14. **[Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation](https://arxiv.org/abs/2605.05007)** — arXiv 2026. `selective-delegation`
+16. **[Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation](https://arxiv.org/abs/2605.05007)** — arXiv 2026. `selective-delegation`
     - Routes only when delegation is useful, reducing unnecessary multi-agent overhead.
 
-15. **[Agent-as-a-Router: Agentic Model Routing for Coding Tasks](https://arxiv.org/abs/2606.22902)** — arXiv 2026. `coding-router`
+17. **[Scaling Enterprise Agent Routing: Degradation, Diagnosis, and Recovery](https://arxiv.org/abs/2606.17519)** — arXiv 2026. `enterprise-routing` `tool-catalog`
+    - Studies routing degradation in a 110-agent, 584-tool production catalog and shows recovery through embedding-based shortlisting.
+
+18. **[Agent-as-a-Router: Agentic Model Routing for Coding Tasks](https://arxiv.org/abs/2606.22902)** — arXiv 2026. `coding-router`
     - Uses an agent itself as the router for coding-task model selection.
-
-16. **[Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer](https://arxiv.org/abs/1701.06538)** — ICLR 2017. `MoE` `expert-router`
-    - Foundational sparse expert routing.
-
-17. **[GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding](https://arxiv.org/abs/2006.16668)** — ICLR 2021. `MoE` `conditional-compute`
-    - Large-scale conditional routing and sharding.
-
-18. **[Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity](https://arxiv.org/abs/2101.03961)** — JMLR 2022. `MoE` `top-1-router`
-    - Simplifies expert routing with top-1 dispatch.
-
-19. **[Mixture-of-Experts with Expert Choice Routing](https://arxiv.org/abs/2202.09368)** — NeurIPS 2022. `expert-choice`
-    - Experts choose tokens, shifting the routing perspective.
-
-20. **[DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models](https://arxiv.org/abs/2401.06066)** — ACL 2024. `MoE` `specialization`
-    - Useful as a modern router/specialist-selection reference.
 
 ---
 
@@ -376,54 +372,42 @@ If you only read ten papers first:
 10. **[TRIAGE: Role-Typed Credit Assignment for Agentic Reinforcement Learning](https://arxiv.org/abs/2606.32017)** — arXiv 2026. `credit-assignment` `agentic-RL`
     - Assigns credit by agent role, relevant for learning orchestration policies.
 
-11. **[QVal: Cheaply Evaluating Dense Supervision Signals for Long-Horizon LLM Agents](https://arxiv.org/abs/2606.32034)** — arXiv 2026. `long-horizon` `supervision`
+11. **[When Parallelism Pays Off: Cohesion-Aware Task Partitioning for Multi-Agent Coding](https://arxiv.org/abs/2606.00953)** — arXiv 2026. `graph-partitioning` `parallel-coding`
+    - Formalizes multi-agent coding orchestration as graph partitioning over communication and computation tradeoffs.
+
+12. **[Characterizing Large Language Model Agentic Workflows: A Study on N8n Ecosystem](https://arxiv.org/abs/2606.29116)** — arXiv 2026. `workflow-mining` `low-code`
+    - Analyzes more than 6,000 public n8n workflows to study real-world agentic workflow structures, routing logic, and reliability gaps.
+
+13. **[When LLMs Develop Languages: Symbolic Communication for Efficient Multi-Agent Reasoning](https://arxiv.org/abs/2606.29354)** — ICML 2026. `communication-router` `token-efficiency`
+    - Uses a router to select and compose compact symbolic protocols across multiple reasoning agents.
+
+14. **[QVal: Cheaply Evaluating Dense Supervision Signals for Long-Horizon LLM Agents](https://arxiv.org/abs/2606.32034)** — arXiv 2026. `long-horizon` `supervision`
     - Targets cheaper dense supervision for long-horizon agent execution.
 
-12. **[Generative Skill Composition for LLM Agents](https://arxiv.org/abs/2606.32025)** — arXiv 2026. `skill-composition`
+15. **[Generative Skill Composition for LLM Agents](https://arxiv.org/abs/2606.32025)** — arXiv 2026. `skill-composition`
     - Composes reusable skills for agents, adjacent to workflow scheduling.
 
 ---
 
-### Embodied, Web, GUI, and Software-Engineering Agents
+### Recent Agentic Applications and Production Orchestration
 
-1. **[Do As I Can, Not As I Say: Grounding Language in Robotic Affordances](https://arxiv.org/abs/2204.01691)** — CoRL 2022. `SayCan` `robot-planning`
-   - Routes LLM high-level plans through affordance/value functions.
+1. **[COHORT: Collaborative Orchestration for Hardening via Offensive Replay on Emulated Topologies](https://arxiv.org/abs/2606.30479)** — arXiv 2026. `security` `multi-agent-workflow`
+   - Role-decomposed agents propose, implement, critique, and replay-test network hardening actions on emulated enterprise topologies.
 
-2. **[Inner Monologue: Embodied Reasoning through Planning with Language Models](https://arxiv.org/abs/2207.05608)** — CoRL 2022. `embodied-feedback`
-   - Uses scene feedback and language planning for embodied agents.
+2. **[Multi-Agent Orchestration for High-Throughput Materials Screening on a Leadership-Class System](https://arxiv.org/abs/2604.07681)** — arXiv 2026. `scientific-workflow` `HPC`
+   - Planner-executor agents partition scientific workloads and coordinate parallel execution through MCP and Parsl on supercomputing infrastructure.
 
-3. **[Code as Policies: Language Model Programs for Embodied Control](https://arxiv.org/abs/2209.07753)** — ICRA 2023. `robot-code`
-   - Turns robot policies into generated code, making tool/runtime dispatch explicit.
+3. **[HearthNet: Edge Multi-Agent Orchestration for Smart Homes](https://arxiv.org/abs/2604.09618)** — arXiv 2026. `edge-orchestration` `smart-home`
+   - Keeps orchestration, state management, and device control on-premise while using LLM APIs for inference.
 
-4. **[ProgPrompt: Generating Situated Robot Task Plans using Large Language Models](https://arxiv.org/abs/2209.11302)** — ICRA 2023. `robot-planning`
-   - Programmatic prompts for situated robot task plans.
+4. **[Characterizing Large Language Model Agentic Workflows: A Study on N8n Ecosystem](https://arxiv.org/abs/2606.29116)** — arXiv 2026. `production-workflows` `low-code`
+   - Empirically studies real low-code agentic workflows, including routing logic, tool-use structure, autonomy levels, and reliability mechanisms.
 
-5. **[PaLM-E: An Embodied Multimodal Language Model](https://arxiv.org/abs/2303.03378)** — ICML 2023. `embodied` `multimodal`
-   - Multimodal embodied planning foundation.
+5. **[When Parallelism Pays Off: Cohesion-Aware Task Partitioning for Multi-Agent Coding](https://arxiv.org/abs/2606.00953)** — arXiv 2026. `coding-agent` `parallelism`
+   - Builds dependency graphs, partitions work, and schedules parallel coding agents when communication overhead is worth it.
 
-6. **[DEPS: Describe, Explain, Plan and Select for Open-World Multi-Task Agents](https://arxiv.org/abs/2302.01560)** — NeurIPS 2023. `open-world` `minecraft`
-   - Explicit describe-explain-plan-select loop for open-world agent tasks.
-
-7. **[Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291)** — TMLR 2024. `lifelong-learning` `skill-library`
-   - Curriculum, skill library, and iterative prompting for long-horizon Minecraft exploration.
-
-8. **[SayPlan: Grounding Large Language Models using 3D Scene Graphs for Scalable Task Planning](https://arxiv.org/abs/2307.06135)** — CoRL 2023. `scene-graph` `planning`
-   - Uses 3D scene graphs to ground and scale embodied plans.
-
-9. **[RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control](https://arxiv.org/abs/2307.15818)** — CoRL 2023. `VLA`
-   - Connects web-scale vision-language learning to action generation.
-
-10. **[SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering](https://arxiv.org/abs/2405.15793)** — NeurIPS 2024. `ACI` `coding-agent`
-    - Shows that interface design is a scheduling/control primitive for coding agents.
-
-11. **[AutoCodeRover: Autonomous Program Improvement](https://arxiv.org/abs/2404.05427)** — ISSTA 2024. `program-repair` `code-search`
-    - Combines LLMs with program-structure search and patch validation.
-
-12. **[OpenHands: An Open Platform for AI Software Developers as Generalist Agents](https://arxiv.org/abs/2407.16741)** — ICLR 2025. `software-agent-platform`
-    - Open platform with code execution, browser use, sandboxing, multi-agent coordination, and benchmark integration.
-
-13. **[Agentless: Demystifying LLM-based Software Engineering Agents](https://arxiv.org/abs/2407.01489)** — FSE 2025. `software-agent-baseline`
-    - Important counterpoint: simple localization-repair-validation pipelines can beat complex autonomous agents.
+6. **[OpenHands: An Open Platform for AI Software Developers as Generalist Agents](https://arxiv.org/abs/2407.16741)** — ICLR 2025. `software-agent-platform`
+   - Open platform with code execution, browser use, sandboxing, multi-agent coordination, and benchmark integration.
 
 ---
 
@@ -526,4 +510,4 @@ Contributions are welcome. Please include:
 
 ## License
 
-This curated document is released for research and educational use. If this repository later becomes public, consider adding a formal open-source license.
+This project is licensed under the [MIT License](LICENSE).
