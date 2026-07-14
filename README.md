@@ -487,6 +487,7 @@ If you only read ten papers first:
 15. **[BrowserGym / WorkArena](https://github.com/ServiceNow/WorkArena)** — Browser-agent environment and knowledge-work tasks.
 16. **[WebArena](https://github.com/web-arena-x/webarena)** — Self-hosted web-agent benchmark.
 17. **[OSWorld](https://github.com/xlang-ai/OSWorld)** — Desktop-agent benchmark environment.
+18. **[Open Agent Relay](https://github.com/ShakespeareLabs/open-agent-relay)** — Local-first capability relay that lets remote teammates or agents invoke restricted Claude Code and Codex workflows while prompts, credentials, dependencies, and working directories remain on the operator's machine.
 
 ### Suggested Paper Entry Template
 
