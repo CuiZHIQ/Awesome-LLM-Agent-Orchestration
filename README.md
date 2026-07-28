@@ -464,6 +464,9 @@ If you only read ten papers first:
 17. **[LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing](https://arxiv.org/abs/2601.07206)** — arXiv 2026. `router-benchmark`
     - Large routing benchmark for model-selection research.
 
+18. **[ClawBench: Can AI Agents Complete Everyday Online Tasks?](https://arxiv.org/abs/2604.08523)** — arXiv 2026. `web-agent` `agent-eval`
+    - Evaluates the end-to-end model-plus-harness stack on 153 everyday tasks across 144 live sites, with isolated execution and five-layer traces.
+
 ---
 
 ## Resources
