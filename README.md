@@ -1,18 +1,19 @@
-# Awesome LLM Agent Orchestration Papers
+# Awesome LLM Agent Orchestration
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Last Updated](https://img.shields.io/badge/Last%20Updated-2026--07--02-blue)
+![Last Updated](https://img.shields.io/badge/Last%20Updated-2026--09--04-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-green)
 
 > A curated research map for **LLM agent scheduling, orchestration, routing, tool dispatch, multi-agent coordination, and workflow optimization**.
 >
-> A research-oriented taxonomy and paper collection for LLM agent orchestration. Here, "scheduling" includes not only traditional OS-style scheduling, but also task decomposition, tool/model/agent routing, parallel function calling, agent team formation, agent graph/workflow optimization, long-horizon execution, and evaluation.
+> Recent papers, benchmarks, and open-source systems for agent routers, orchestration policies, workflow graphs, MCP/tool environments, and production agent evaluation.
 
 ---
 
 ## News
 
+- `2026-09-04`: Added a 2026 accepted-paper highlight section and refreshed routing/orchestration papers from ICLR 2026, ICML 2026, ACL 2026, EACL 2026, ACL Findings 2026, EMNLP 2026, EMNLP Findings 2026, and COLM 2026.
 - `2026-07-02`: Refocused the list toward recent orchestra/router work, added 2026 agent-routing and multi-agent-orchestration papers, and switched the public repository to MIT licensing.
 - `2026-07-01`: Initial version. Built a taxonomy-first paper list for LLM agent orchestration.
 
@@ -23,6 +24,8 @@
 - [Introduction](#introduction)
 - [DeepResearch Taxonomy](#deepresearch-taxonomy)
 - [Reading Roadmap](#reading-roadmap)
+- [2026 Accepted Highlights](#2026-accepted-highlights)
+- [Fresh 2026 Watchlist](#fresh-2026-watchlist)
 - [Papers](#papers)
   - [Surveys, Taxonomies, and Position Papers](#surveys-taxonomies-and-position-papers)
   - [Planning, Control Loops, and Search](#planning-control-loops-and-search)
@@ -56,7 +59,7 @@ User Goal
   -> Final Synthesizer
 ```
 
-This list prioritizes work directly related to the stack above. Pure prompt engineering, standard RAG, single-model reasoning, and traditional MoE papers are included only when they provide meaningful insight into routers or schedulers.
+This list is recent-first and orchestration-first. Pure prompt engineering, standard RAG, single-model reasoning, and traditional MoE papers are included only when they expose a useful planner, router, scheduler, evaluator, memory policy, or multi-agent coordination mechanism.
 
 ## DeepResearch Taxonomy
 
@@ -64,29 +67,112 @@ This list prioritizes work directly related to the stack above. Pure prompt engi
 | --- | --- | --- | --- |
 | Planning and control loops | How should a goal be decomposed into executable steps and revised from observations? | ReAct loop, plan-and-execute, MCTS, tree/graph search, self-reflection | ReAct, ToT, GoT, RAP, LATS |
 | Tool/API orchestration | When should each tool be called, and how should multi-tool results be composed? | API retrieval, function planner, tool compiler, async/parallel execution | Toolformer, ToolLLM, HuggingGPT, LLMCompiler, AnyTool |
-| Model routing | Should a request go to a cheaper model, a stronger model, a specialist model, or a model ensemble? | Cascades, preference routers, uncertainty routers, bandit routers | FrugalGPT, RouteLLM, RouterBench, MoA |
-| Agent routing and team formation | Which agent should handle each subtask, how should work be divided, and how should agents communicate? | Role assignment, dynamic team selection, debate, committee, graph topology | MetaGPT, AgentVerse, DyLAN, GPTSwarm, AutoGen |
-| Workflow graph optimization | How can agent workflow graphs be generated, tuned, reused, and evolved automatically? | Agentic computation graphs, edge optimization, workflow memory, latency-cost-reliability tradeoff | GPTSwarm, Agent Workflow Memory, workflow optimization surveys |
-| Runtime scheduling | How should calls across tools, agents, and models be parallelized, retried, and budgeted? | DAG scheduler, parallel function calls, async function calls, early stop, budget-aware routing | LLMCompiler, AsyncLM, latency-aware orchestration |
-| Memory and skill reuse | How can successful trajectories be distilled into reusable workflows and skills? | Episodic memory, workflow induction, skill composition, procedural memory | Agent Workflow Memory, LEGOMem, Generative Skill Composition |
-| Evaluation | How should long-horizon task completion, routing quality, cost, and safety be measured? | Interactive environments, execution-based grading, user simulators, router benchmarks | AgentBench, WebArena, OSWorld, SWE-bench, GAIA, RouterBench |
+| Model routing | Should a request go to a cheaper model, a stronger model, a specialist model, or a model ensemble? | Cascades, preference routers, uncertainty routers, bandit routers, bi-level routers | RouteLLM, R2-Router, ACE-Router, EvoRoute, VDAR-Router |
+| Agent routing and team formation | Which agent should handle each subtask, how should work be divided, and how should agents communicate? | Role assignment, dynamic team selection, debate, committee, graph topology | Conductor, MAS-Orchestra, GraphPlanner, ProgRouter, AgentRouter |
+| Workflow graph optimization | How can agent workflow graphs be generated, tuned, reused, and evolved automatically? | Agentic computation graphs, edge optimization, workflow memory, latency-cost-reliability tradeoff | GPTSwarm, Graph-of-Agents, BudgetMem, Gated-Memory Routing, AggAgent |
+| Runtime scheduling | How should calls across tools, agents, and models be parallelized, retried, and budgeted? | DAG scheduler, parallel function calls, async function calls, early stop, budget-aware routing | LLMCompiler, AsyncLM, ProgRouter, Budget-Aware Tool Use, INFRAMIND |
+| Memory and skill reuse | How can successful trajectories be distilled into reusable workflows and skills? | Episodic memory, workflow induction, skill composition, procedural memory | Agent Workflow Memory, BudgetMem, Gated-Memory Routing, Corpus2Skill, LEGOMem |
+| Evaluation | How should long-horizon task completion, routing quality, cost, and safety be measured? | Interactive environments, execution-based grading, user simulators, router benchmarks | ComplexMCP, MCP-Bench, SwarmBench, AlphaEval, LLMRouterBench |
 
 ---
 
 ## Reading Roadmap
 
-If you only read ten papers first:
+If you only read twelve papers first:
 
-1. **[Uno-Orchestra](https://arxiv.org/abs/2605.05007)** — arXiv 2026. Selective delegation over decomposition depth, worker choice, and inference budget.
-2. **[Agent-as-a-Router](https://arxiv.org/abs/2606.22902)** — arXiv 2026. Treats routing as a context-action-feedback loop with execution-grounded memory.
-3. **[INFRAMIND](https://arxiv.org/abs/2606.11440)** — arXiv 2026. Infrastructure-aware planning, per-step routing, and scheduling for multi-agent pipelines.
-4. **[Scaling Enterprise Agent Routing](https://arxiv.org/abs/2606.17519)** — arXiv 2026. Studies routing degradation and recovery in a 110-agent, 584-tool production catalog.
-5. **[LEMON](https://arxiv.org/abs/2605.14483)** — arXiv 2026. Learns executable multi-agent orchestration specifications with counterfactual RL.
-6. **[When Parallelism Pays Off](https://arxiv.org/abs/2606.00953)** — arXiv 2026. Frames multi-agent coding orchestration as cohesion-aware graph partitioning.
-7. **[PerspectiveGap](https://arxiv.org/abs/2606.08878)** — arXiv 2026. Benchmark for composing multi-agent orchestration prompts.
-8. **[The Workload-Router-Pool Architecture](https://arxiv.org/abs/2603.21354)** — arXiv 2026. Systems view of workload-aware inference routing for agentic workloads.
-9. **[LLMCompiler](https://proceedings.mlr.press/v235/kim24y.html)** — ICML 2024. Dependency-aware parallel function calling.
-10. **[GPTSwarm](https://proceedings.mlr.press/v235/zhuge24a.html)** — ICML 2024. Language agents represented and optimized as graphs.
+1. **[Learning to Orchestrate Agents in Natural Language with the Conductor](https://arxiv.org/abs/2512.04388)** — ICLR 2026. RL-trained natural-language conductor for topology and prompt orchestration.
+2. **[MAS-Orchestra](https://arxiv.org/abs/2601.14652)** — ICML 2026. Holistic multi-agent orchestration as function-calling RL.
+3. **[ProgRouter](https://arxiv.org/abs/2608.25992)** — Findings of EMNLP 2026. Online progress-guided agent routing under quality-cost trade-offs.
+4. **[GraphPlanner](https://arxiv.org/abs/2604.23626)** — ICLR 2026. Query-specific workflow routing from graph memory.
+5. **[Graph-of-Agents](https://arxiv.org/abs/2604.17148)** — ICLR 2026. Graph-based multi-agent communication and aggregation.
+6. **[R2-Router](https://arxiv.org/abs/2602.02823)** — ICML 2026. Routing as reasoning over model choice and output-length budget.
+7. **[ACE-Router](https://aclanthology.org/2026.acl-long.281/)** — ACL 2026. History-aware routing from MCP tools to the open Agent Web.
+8. **[EvoRoute](https://aclanthology.org/2026.acl-long.1771/)** — ACL 2026. Experience-driven self-routing for cost-latency-quality trade-offs.
+9. **[Learning What to Retain](https://arxiv.org/abs/2609.00237)** — EMNLP 2026. Gated-memory routing for efficient multi-agent collaboration.
+10. **[Budget-Aware Tool Use Enables Effective Agent Scaling](https://arxiv.org/abs/2511.17006)** — COLM 2026. Budget-aware planning and verification for tool-augmented agents.
+11. **[MCP-Bench](https://proceedings.iclr.cc/paper_files/paper/2026/hash/9e4b14eb6f16fe7b5818a8d633a0606a-Abstract-Conference.html)** — ICLR 2026. MCP-server benchmark for tool-using agents.
+12. **[SwarmBench](https://arxiv.org/abs/2608.30661)** — Findings of EMNLP 2026. Evaluation suite for dynamically orchestrated agent swarms.
+
+---
+
+## 2026 Accepted Highlights
+
+| Paper | Venue | Why it matters for orchestration |
+| --- | --- | --- |
+| **[Learning to Orchestrate Agents in Natural Language with the Conductor](https://arxiv.org/abs/2512.04388)** | ICLR 2026 | Trains a conductor model to design communication topologies and focused prompts over arbitrary worker-agent pools. |
+| **[DiSRouter: Distributed Self-Routing for LLM Selections](https://arxiv.org/abs/2510.19208)** | ICLR 2026 | Replaces a centralized router with self-aware LLM agents that decide whether to answer or pass a query along. |
+| **[Graph-of-Agents: A Graph-based Framework for Multi-Agent LLM Collaboration](https://arxiv.org/abs/2604.17148)** | ICLR 2026 | Selects relevant agents, constructs communication edges, passes messages, and pools responses with a graph abstraction. |
+| **[GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs](https://arxiv.org/abs/2604.23626)** | ICLR 2026 | Generates query-specific multi-agent routing workflows from heterogeneous graph memory. |
+| **[TRINITY: An Evolved LLM Coordinator](https://arxiv.org/abs/2512.04695)** | ICLR 2026 | Evolves a lightweight coordinator that delegates Thinker, Worker, and Verifier roles across LLMs. |
+| **[SLM-MUX: Orchestrating Small Language Models for Reasoning](https://openreview.net/forum?id=317bcKF4zv)** | ICLR 2026 | Routes per query across small language models with training-free confidence-based selection. |
+| **[MCP-Bench](https://proceedings.iclr.cc/paper_files/paper/2026/hash/9e4b14eb6f16fe7b5818a8d633a0606a-Abstract-Conference.html)** | ICLR 2026 | Benchmarks tool-using agents on complex real-world tasks via MCP servers. |
+| **[MCP Security Bench](https://arxiv.org/abs/2510.15994)** | ICLR 2026 | Benchmarks attacks against MCP-based LLM agents across the full tool-use pipeline. |
+| **[MCP-SafetyBench](https://openreview.net/forum?id=7XYjeL46co)** | ICLR 2026 | Evaluates safety risks in agents connected to real-world MCP servers. |
+| **[VitaBench](https://vitabench.github.io/)** | ICLR 2026 | Evaluates agents on versatile interactive real-world application tasks with a large tool ecosystem. |
+| **[WideSearch](https://proceedings.iclr.cc/paper_files/paper/2026/hash/1119587863e78451f080da2a768c4935-Abstract-Conference.html)** | ICLR 2026 | Tests broad information-seeking agents that must gather and organize large-scale evidence. |
+| **[DeepResearch Bench](https://proceedings.iclr.cc/paper_files/paper/2026/hash/465f22be10e07b301c6ed58f0472f704-Abstract-Conference.html)** | ICLR 2026 | Evaluates deep research agents that plan, search, synthesize, and cite over long horizons. |
+| **[MAS-Orchestra](https://arxiv.org/abs/2601.14652)** | ICML 2026 | Generates an entire multi-agent system at once through holistic function-calling reinforcement learning. |
+| **[R2-Router](https://arxiv.org/abs/2602.02823)** | ICML 2026 | Jointly routes to a model and an output-length budget, treating routing as an active reasoning process. |
+| **[BudgetMem](https://arxiv.org/abs/2602.06025)** | ICML 2026 | Routes runtime agent memory modules across budget tiers to balance cost and performance. |
+| **[ComplexMCP](https://arxiv.org/abs/2605.10787)** | ICML 2026 | Evaluates agents in stateful, interdependent MCP tool sandboxes with dynamic failures and large tool spaces. |
+| **[When LLMs Develop Languages](https://openreview.net/forum?id=ovpL0ujD6j)** | ICML 2026 | Uses a router to select compact symbolic communication protocols for multi-agent reasoning. |
+| **[AgentRouter](https://aclanthology.org/2026.acl-long.33/)** | ACL 2026 | Casts collaborative multi-agent QA as knowledge-graph-guided routing over agents. |
+| **[Efficient Multi-Agent System Training with Data Influence-Oriented Tree Search](https://aclanthology.org/2026.acl-long.296/)** | ACL 2026 | Allocates search resources toward influence-estimated data for improving multi-agent systems. |
+| **[ACE-Router](https://aclanthology.org/2026.acl-long.281/)** | ACL 2026 | Trains history-aware routers for large MCP/Agent-Web ecosystems with scalable candidate spaces. |
+| **[EvoRoute](https://aclanthology.org/2026.acl-long.1771/)** | ACL 2026 | Uses prior experience and feedback to select Pareto-optimal LLM backbones at each agent step. |
+| **[MTRouter](https://aclanthology.org/2026.acl-long.2045/)** | ACL 2026 | Routes multi-turn agent trajectories with interaction-history and model embeddings under a fixed budget. |
+| **[InferenceDynamics](https://aclanthology.org/2026.acl-long.383/)** | ACL 2026 | Profiles model capabilities and knowledge to scale adaptive model routing over specialized LLM pools. |
+| **[TRouter](https://aclanthology.org/2026.acl-long.1007/)** | ACL 2026 | Uses task-profile-guided data synthesis for cold-start LLM routing. |
+| **[Conjunctive Prompt Attacks in Multi-Agent LLM Systems](https://aclanthology.org/2026.acl-long.1577/)** | ACL 2026 | Shows how prompt segmentation and inter-agent routing create composition-level attack surfaces. |
+| **[TAMAS](https://aclanthology.org/2026.acl-long.1442/)** | ACL 2026 | Benchmarks adversarial risks in multi-agent LLM systems. |
+| **[BlindGuard](https://aclanthology.org/2026.acl-long.1819/)** | ACL 2026 | Safeguards LLM-based multi-agent systems under unknown attacks. |
+| **[Explainable and Fine-Grained Safeguarding of LLM Multi-Agent Systems](https://aclanthology.org/2026.acl-long.1407/)** | ACL 2026 | Uses bi-level graph anomaly detection for fine-grained MAS safety. |
+| **[ExtAgents](https://aclanthology.org/2026.acl-long.468/)** | ACL 2026 | Uses multi-agent collaboration to scale external knowledge integration beyond context windows. |
+| **[EmoMAS](https://aclanthology.org/2026.acl-long.1464/)** | ACL 2026 | Coordinates specialized agents through a Bayesian orchestrator for high-stakes negotiation. |
+| **[Agent-Ops](https://aclanthology.org/2026.acl-industry.29/)** | ACL 2026 Industry | Production multi-agent SOP automation for e-commerce operations. |
+| **[LatentGate](https://aclanthology.org/2026.acl-industry.153/)** | ACL 2026 Industry | Low-latency semantic agent routing with frozen small-language-model probing. |
+| **[LLMRouterBench](https://aclanthology.org/2026.findings-acl.1881/)** | Findings of ACL 2026 | Provides a large routing benchmark with 400K+ instances, 21 datasets, 33 models, and latency-aware analysis. |
+| **[BiCSRouter](https://aclanthology.org/2026.findings-acl.947/)** | Findings of ACL 2026 | Routes between single-agent and multi-agent regimes through bi-level cross-system selection. |
+| **[RouterHGC](https://aclanthology.org/2026.findings-acl.1589/)** | Findings of ACL 2026 | Optimizes MAS routing with heterogeneous graph contrastive learning over queries, roles, modes, and LLMs. |
+| **[MATA](https://aclanthology.org/2026.findings-acl.1672/)** | Findings of ACL 2026 | Orchestrates multiple reasoning paths and small-model tools for reliable table QA. |
+| **[Towards Scalable Lightweight GUI Agents via Multi-role Orchestration](https://aclanthology.org/2026.findings-acl.1122/)** | Findings of ACL 2026 | Trains a lightweight GUI policy executor that can participate in MAS-style orchestration. |
+| **[How Robust Are Router-LLMs?](https://aclanthology.org/2026.eacl-long.351/)** | EACL 2026 | Stress-tests router fragility across task categories, privacy, safety, and jailbreak settings. |
+| **[GMTRouter](https://arxiv.org/abs/2511.08590)** | Findings of EMNLP 2026 | Personalizes routing from multi-turn user-LLM interaction graphs. |
+| **[Learning What to Retain: Gated-Memory Routing for Efficient Collaboration in Multi-Agent LLM Systems](https://arxiv.org/abs/2609.00237)** | EMNLP 2026 | Routes roles and model backbones from compact learned execution memory with adaptive halting. |
+| **[ProgRouter](https://arxiv.org/abs/2608.25992)** | Findings of EMNLP 2026 | Makes online step-wise routing decisions from task-progress signals, remaining difficulty, time, and cost. |
+| **[SwarmBench](https://arxiv.org/abs/2608.30661)** | Findings of EMNLP 2026 | Evaluates LLMs as orchestrators of dynamically coordinated agent swarms. |
+| **[VDAR-Router](https://arxiv.org/abs/2607.18098)** | Findings of EMNLP 2026 | Retrieves difficulty-profiled historical cases to make training-free cost-performance routing decisions. |
+| **[Calibration is the Bottleneck](https://arxiv.org/abs/2609.00949)** | Findings of EMNLP 2026 | Decomposes multi-turn tool-calling failures into action-class calibration and execution errors. |
+| **[Corpus2Skill](https://arxiv.org/abs/2604.14572)** | Findings of EMNLP 2026 | Converts enterprise corpora into navigable skill hierarchies for agent-side selection and use. |
+| **[ChatDev 2.0: DevAll](https://arxiv.org/abs/2609.00714)** | EMNLP 2026 Demo | Provides a no-code platform for building, executing, monitoring, and inspecting heterogeneous MAS graphs. |
+| **[FlexRouter](https://research.adobe.com/publication/flexrouter-learning-complementary-model-sets-for-flexible-llm-routing/)** | COLM 2026 | Learns complementary model subsets instead of one-best routing, reducing redundant failure modes. |
+| **[Routesplain](https://arxiv.org/abs/2511.09373)** | COLM 2026 | Makes software-task routing faithful and intervenable through human-readable concept extraction. |
+| **[Agentic Aggregation for Parallel Scaling of Long-Horizon Agentic Tasks](https://arxiv.org/abs/2604.11753)** | COLM 2026 | Aggregates parallel long-horizon agent trajectories through an inspection-and-search aggregation agent. |
+| **[Budget-Aware Tool Use Enables Effective Agent Scaling](https://arxiv.org/abs/2511.17006)** | COLM 2026 | Adds budget tracking and budget-aware test-time scaling for tool-augmented agents. |
+| **[AlphaEval](https://arxiv.org/abs/2604.12162)** | COLM 2026 | Evaluates complete production agent products with real company tasks and mixed grading paradigms. |
+| **[How Well Do Agentic Skills Work in the Wild](https://arxiv.org/abs/2604.04323)** | COLM 2026 | Tests whether agents can retrieve and adapt useful skills from a large realistic skill collection. |
+| **[Cooperative Profiles Predict Multi-Agent LLM Team Performance](https://arxiv.org/abs/2604.20658)** | COLM 2026 | Uses inexpensive cooperation diagnostics to screen multi-agent teams before costly deployment. |
+| **[StateBridge](https://arxiv.org/abs/2608.13317)** | COLM 2026 | Aligns hidden states for training-free latent communication between LLM agents. |
+| **[Meta-Harness](https://arxiv.org/abs/2603.28052)** | COLM 2026 | Searches over the harness code that stores, retrieves, and presents context to agentic systems. |
+| **[OFA-MAS](https://dl.acm.org/doi/10.1145/3774904.3792537)** | WWW 2026 | Generates adaptive multi-agent collaboration graphs for natural-language tasks. |
+| **[Assemble Your Crew](https://github.com/Shiy-Li/ARG-Designer)** | AAAI 2026 Oral | Designs multi-agent communication topology via autoregressive graph generation. |
+
+---
+
+## Fresh 2026 Watchlist
+
+| Paper | Status | Why track it |
+| --- | --- | --- |
+| **[Codebook Agent: Amortized Topology Design for LLM Multi-Agent Systems](https://arxiv.org/abs/2609.02264)** | arXiv 2026 | Compresses successful MAS topologies into a small codebook and routes queries to decoded communication graphs. |
+| **[The Differential Reasoning Router](https://arxiv.org/abs/2608.30224)** | arXiv 2026 | Jointly routes between direct reasoning, expensive reasoning, and human escalation in production-style annotation. |
+| **[Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation](https://arxiv.org/abs/2605.05007)** | arXiv 2026 | Studies when not to delegate, a practical counterweight to always-on multi-agent orchestration. |
+| **[Agent-as-a-Router: Agentic Model Routing for Coding Tasks](https://arxiv.org/abs/2606.22902)** | arXiv 2026 | Uses an agent as the router for coding-task model selection. |
+| **[INFRAMIND: Infrastructure-Aware Multi-Agent Orchestration](https://arxiv.org/abs/2606.11440)** | arXiv 2026 | Couples planner/router/scheduler decisions to real-time infrastructure state. |
+| **[LEMON](https://arxiv.org/abs/2605.14483)** | arXiv 2026 | Learns executable orchestration specs through counterfactual reinforcement learning. |
+| **[Scaling Enterprise Agent Routing](https://arxiv.org/abs/2606.17519)** | arXiv 2026 | Studies routing degradation, diagnosis, and recovery in a large production-style agent/tool catalog. |
+| **[The Workload-Router-Pool Architecture](https://arxiv.org/abs/2603.21354)** | arXiv 2026 | Frames LLM serving as workload-aware routing across model pools. |
+| **[Accuracy Is Speed](https://arxiv.org/abs/2604.15732)** | arXiv 2026 | Shows why long-context serving routers should treat accuracy as part of latency. |
+| **[SoK: When Safe Agents Fail Together](https://arxiv.org/abs/2609.00595)** | arXiv 2026 | Systematizes security failures that emerge from multi-agent composition rather than isolated agents. |
 
 ---
 
@@ -213,9 +299,39 @@ If you only read ten papers first:
 17. **[Asynchronous LLM Function Calling](https://arxiv.org/abs/2412.07017)** — arXiv 2024. `async` `runtime`
     - Enables LLMs to generate and execute function calls concurrently.
 
+18. **[Budget-Aware Tool Use Enables Effective Agent Scaling](https://arxiv.org/abs/2511.17006)** — COLM 2026. `budget-aware` `tool-use`
+    - Gives tool-augmented agents continuous budget awareness and adapts planning and verification under tool-call constraints.
+
 ---
 
 ### Multi-Agent Collaboration and Team Orchestration
+
+**Recent accepted work**
+
+| Paper | Venue | Focus |
+| --- | --- | --- |
+| **[Learning to Orchestrate Agents in Natural Language with the Conductor](https://arxiv.org/abs/2512.04388)** | ICLR 2026 | RL-trained natural-language conductor that writes worker prompts and communication topology. |
+| **[MAS-Orchestra](https://arxiv.org/abs/2601.14652)** | ICML 2026 | Holistic function-calling RL for generating complete multi-agent systems. |
+| **[ProgRouter](https://arxiv.org/abs/2608.25992)** | Findings of EMNLP 2026 | Online progress-aware routing across multi-agent workflow steps. |
+| **[Learning What to Retain](https://arxiv.org/abs/2609.00237)** | EMNLP 2026 | Gated memory routing for role, backbone, and halting decisions during collaboration. |
+| **[Graph-of-Agents](https://arxiv.org/abs/2604.17148)** | ICLR 2026 | Graph-based agent selection, edge construction, message passing, and response pooling. |
+| **[GraphPlanner](https://arxiv.org/abs/2604.23626)** | ICLR 2026 | Graph-memory-augmented routing workflow generation for multi-agent LLMs. |
+| **[OFA-MAS](https://dl.acm.org/doi/10.1145/3774904.3792537)** | WWW 2026 | One-for-all adaptive topology generation for cross-domain MAS tasks. |
+| **[Assemble Your Crew](https://github.com/Shiy-Li/ARG-Designer)** | AAAI 2026 Oral | Autoregressive graph generation for automatic communication-topology design. |
+| **[TRINITY](https://arxiv.org/abs/2512.04695)** | ICLR 2026 | Evolved coordinator for Thinker, Worker, and Verifier collaboration. |
+| **[Efficient Multi-Agent System Training with Data Influence-Oriented Tree Search](https://aclanthology.org/2026.acl-long.296/)** | ACL 2026 | Influence-guided tree search for improving multi-agent system training data. |
+| **[Agentic Aggregation for Parallel Scaling of Long-Horizon Agentic Tasks](https://arxiv.org/abs/2604.11753)** | COLM 2026 | Aggregation agent for parallel long-horizon rollouts in search and deep research. |
+| **[Cooperative Profiles Predict Multi-Agent LLM Team Performance](https://arxiv.org/abs/2604.20658)** | COLM 2026 | Low-cost cooperative-profile diagnostics for selecting deployable agent teams. |
+| **[StateBridge](https://arxiv.org/abs/2608.13317)** | COLM 2026 | Training-free latent communication channel between LLM agents. |
+| **[ChatDev 2.0: DevAll](https://arxiv.org/abs/2609.00714)** | EMNLP 2026 Demo | No-code platform with declarative executable graphs and a cycle-aware MAS engine. |
+| **[Towards Scalable Lightweight GUI Agents via Multi-role Orchestration](https://aclanthology.org/2026.findings-acl.1122/)** | Findings of ACL 2026 | Lightweight GUI agent training that supports MAS-style role orchestration. |
+| **[ExtAgents](https://aclanthology.org/2026.acl-long.468/)** | ACL 2026 | Multi-agent scaling strategy for external knowledge beyond context windows. |
+| **[Agent-Ops](https://aclanthology.org/2026.acl-industry.29/)** | ACL 2026 Industry | Production SOP automation with role-specialized enterprise agents. |
+| **[Multi-Agent Orchestration for Terminology-Constrained Machine Translation](https://aclanthology.org/2026.acl-industry.63/)** | ACL 2026 Industry | Deployed sequential Analysis-Translation-Post-editing-Review agent pipeline. |
+| **[EmoMAS](https://aclanthology.org/2026.acl-long.1464/)** | ACL 2026 | Bayesian orchestration across specialized negotiation agents. |
+| **[Paper Circle](https://aclanthology.org/2026.acl-long.1952/)** | ACL 2026 | Multi-agent research discovery and paper-analysis workflow. |
+
+**Foundational and broader related work**
 
 1. **[Generative Agents: Interactive Simulacra of Human Behavior](https://dl.acm.org/doi/10.1145/3586183.3606763)** — UIST 2023. `simulation` `memory`
    - Early influential work on agent memory, reflection, and social simulation.
@@ -284,6 +400,34 @@ If you only read ten papers first:
 
 ### Model Routing, Agent Routing, Cascades, and MoE Routers
 
+**Recent accepted work**
+
+| Paper | Venue | Focus |
+| --- | --- | --- |
+| **[R2-Router](https://arxiv.org/abs/2602.02823)** | ICML 2026 | Jointly routes over model choice and output-length budget. |
+| **[ACE-Router](https://aclanthology.org/2026.acl-long.281/)** | ACL 2026 | History-aware routing from MCP tools to open Agent-Web ecosystems. |
+| **[EvoRoute](https://aclanthology.org/2026.acl-long.1771/)** | ACL 2026 | Experience-driven model routing at each agent step. |
+| **[AgentRouter](https://aclanthology.org/2026.acl-long.33/)** | ACL 2026 | Knowledge-graph-guided routing for collaborative multi-agent QA. |
+| **[MTRouter](https://aclanthology.org/2026.acl-long.2045/)** | ACL 2026 | Cost-aware multi-turn routing with history-model embeddings. |
+| **[InferenceDynamics](https://aclanthology.org/2026.acl-long.383/)** | ACL 2026 | Capability and knowledge profiling for specialized model pools. |
+| **[TRouter](https://aclanthology.org/2026.acl-long.1007/)** | ACL 2026 | Task-profile-guided data synthesis for cold-start routing. |
+| **[BiCSRouter](https://aclanthology.org/2026.findings-acl.947/)** | Findings of ACL 2026 | Bi-level routing across single-agent and multi-agent regimes. |
+| **[RouterHGC](https://aclanthology.org/2026.findings-acl.1589/)** | Findings of ACL 2026 | Heterogeneous graph contrastive learning for MAS routing. |
+| **[LatentGate](https://aclanthology.org/2026.acl-industry.153/)** | ACL 2026 Industry | Low-latency semantic routing for hundreds of specialized agents. |
+| **[LLMRouterBench](https://aclanthology.org/2026.findings-acl.1881/)** | Findings of ACL 2026 | Unified 400K-instance benchmark for LLM routing. |
+| **[GMTRouter](https://arxiv.org/abs/2511.08590)** | Findings of EMNLP 2026 | Personalized routing over multi-turn user interactions. |
+| **[ProgRouter](https://arxiv.org/abs/2608.25992)** | Findings of EMNLP 2026 | Online progress-guided routing across multi-agent workflow steps. |
+| **[Learning What to Retain](https://arxiv.org/abs/2609.00237)** | EMNLP 2026 | Gated memory routing for role and backbone selection under execution-history overload. |
+| **[VDAR-Router](https://arxiv.org/abs/2607.18098)** | Findings of EMNLP 2026 | Difficulty-aware retrieval-based routing with explicit query analysis. |
+| **[FlexRouter](https://research.adobe.com/publication/flexrouter-learning-complementary-model-sets-for-flexible-llm-routing/)** | COLM 2026 | Routes to complementary model sets rather than a single model. |
+| **[Routesplain](https://arxiv.org/abs/2511.09373)** | COLM 2026 | Faithful, intervenable routing for software-related tasks. |
+| **[DiSRouter](https://arxiv.org/abs/2510.19208)** | ICLR 2026 | Distributed self-routing with self-aware LLM agents. |
+| **[GraphPlanner](https://arxiv.org/abs/2604.23626)** | ICLR 2026 | Graph-memory-augmented agentic routing workflow generation. |
+| **[SLM-MUX](https://openreview.net/forum?id=317bcKF4zv)** | ICLR 2026 | Training-free routing among small language models. |
+| **[How Robust Are Router-LLMs?](https://aclanthology.org/2026.eacl-long.351/)** | EACL 2026 | Robustness benchmark for preference-data and commercial routers. |
+
+**Foundational and broader related work**
+
 1. **[RouterBench: A Benchmark for Multi-LLM Routing System](https://arxiv.org/abs/2403.12031)** — arXiv 2024. `routing-benchmark`
    - Standardizes LLM router evaluation with many model-response outcomes.
 
@@ -305,7 +449,7 @@ If you only read ten papers first:
 7. **[LLM Routing with Dueling Feedback](https://arxiv.org/abs/2510.00841)** — arXiv 2025. `dueling-feedback`
    - Uses pairwise feedback to improve router decisions.
 
-8. **[LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing](https://arxiv.org/abs/2601.07206)** — arXiv 2026. `routing-benchmark`
+8. **[LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing](https://aclanthology.org/2026.findings-acl.1881/)** — Findings of ACL 2026. `routing-benchmark`
     - Expands benchmark coverage for routing across models and tasks.
 
 9. **[Signal Driven Decision Routing for Mixture-of-Modality Models](https://arxiv.org/abs/2603.04444)** — arXiv 2026. `semantic-router` `multimodal-routing`
@@ -341,6 +485,27 @@ If you only read ten papers first:
 ---
 
 ### Workflow Graphs, Runtime Scheduling, Memory, and Optimization
+
+**Recent accepted work**
+
+| Paper | Venue | Focus |
+| --- | --- | --- |
+| **[GraphPlanner](https://arxiv.org/abs/2604.23626)** | ICLR 2026 | Generates multi-agent routing workflows from graph memory. |
+| **[Graph-of-Agents](https://arxiv.org/abs/2604.17148)** | ICLR 2026 | Uses graph structure for selective activation, message passing, and pooling. |
+| **[ProgRouter](https://arxiv.org/abs/2608.25992)** | Findings of EMNLP 2026 | Online, state-dependent routing for long-horizon multi-agent workflows. |
+| **[Learning What to Retain](https://arxiv.org/abs/2609.00237)** | EMNLP 2026 | Learned write/retrieval gates and adaptive halting for compact workflow state. |
+| **[OFA-MAS](https://dl.acm.org/doi/10.1145/3774904.3792537)** | WWW 2026 | Learns adaptive MAS topology design with MoE graph generative models. |
+| **[Assemble Your Crew](https://github.com/Shiy-Li/ARG-Designer)** | AAAI 2026 Oral | Automatically generates multi-agent communication graphs. |
+| **[Learning to Orchestrate Agents in Natural Language with the Conductor](https://arxiv.org/abs/2512.04388)** | ICLR 2026 | Learns natural-language workflow construction over arbitrary worker pools. |
+| **[BudgetMem](https://arxiv.org/abs/2602.06025)** | ICML 2026 | Query-aware budget-tier routing for runtime agent memory. |
+| **[When LLMs Develop Languages](https://openreview.net/forum?id=ovpL0ujD6j)** | ICML 2026 | Router-selected symbolic protocols for efficient multi-agent communication. |
+| **[Agentic Aggregation for Parallel Scaling of Long-Horizon Agentic Tasks](https://arxiv.org/abs/2604.11753)** | COLM 2026 | Interactive aggregation over multiple parallel long-horizon trajectories. |
+| **[Budget-Aware Tool Use Enables Effective Agent Scaling](https://arxiv.org/abs/2511.17006)** | COLM 2026 | Runtime budget tracker and adaptive test-time scaling for tool-augmented agents. |
+| **[StateBridge](https://arxiv.org/abs/2608.13317)** | COLM 2026 | Hidden-state alignment for training-free latent agent communication. |
+| **[Meta-Harness](https://arxiv.org/abs/2603.28052)** | COLM 2026 | Outer-loop optimization over context, retrieval, and harness code for agent systems. |
+| **[ChatDev 2.0: DevAll](https://arxiv.org/abs/2609.00714)** | EMNLP 2026 Demo | Declarative executable graph abstraction for heterogeneous MAS. |
+
+**Foundational and broader related work**
 
 1. **[GPTSwarm: Language Agents as Optimizable Graphs](https://proceedings.mlr.press/v235/zhuge24a.html)** — ICML 2024. `workflow-graph`
    - Core paper for treating agent systems as optimizable computation graphs.
@@ -391,6 +556,22 @@ If you only read ten papers first:
 
 ### Recent Agentic Applications and Production Orchestration
 
+**Recent accepted work**
+
+| Paper | Venue | Focus |
+| --- | --- | --- |
+| **[Agent-Ops](https://aclanthology.org/2026.acl-industry.29/)** | ACL 2026 Industry | End-to-end SOP automation for e-commerce operations. |
+| **[Multi-Agent Orchestration for Terminology-Constrained Machine Translation](https://aclanthology.org/2026.acl-industry.63/)** | ACL 2026 Industry | Role-specialized industrial localization pipeline. |
+| **[LatentGate](https://aclanthology.org/2026.acl-industry.153/)** | ACL 2026 Industry | Production-oriented low-latency routing for many specialized agents. |
+| **[Learning to Prompt](https://arxiv.org/abs/2606.20138)** | EMNLP 2026 Industry | Adaptive prompt routing for deployed high-school tutoring. |
+| **[Towards Scalable Lightweight GUI Agents via Multi-role Orchestration](https://aclanthology.org/2026.findings-acl.1122/)** | Findings of ACL 2026 | Resource-conscious GUI automation with multi-role orchestration support. |
+| **[Corpus2Skill](https://arxiv.org/abs/2604.14572)** | Findings of EMNLP 2026 | Enterprise knowledge bases compiled into navigable skills for agent-side use. |
+| **[Paper Circle](https://aclanthology.org/2026.acl-long.1952/)** | ACL 2026 | Multi-agent research discovery and analysis product workflow. |
+| **[MATA](https://aclanthology.org/2026.findings-acl.1672/)** | Findings of ACL 2026 | TableQA system orchestrating reasoning paths and small-model tools. |
+| **[ExtAgents](https://aclanthology.org/2026.acl-long.468/)** | ACL 2026 | Multi-agent external-knowledge integration at inference time. |
+
+**Additional recent systems**
+
 1. **[COHORT: Collaborative Orchestration for Hardening via Offensive Replay on Emulated Topologies](https://arxiv.org/abs/2606.30479)** — arXiv 2026. `security` `multi-agent-workflow`
    - Role-decomposed agents propose, implement, critique, and replay-test network hardening actions on emulated enterprise topologies.
 
@@ -412,6 +593,31 @@ If you only read ten papers first:
 ---
 
 ### Benchmarks and Evaluation
+
+**Recent accepted work**
+
+| Paper | Venue | Focus |
+| --- | --- | --- |
+| **[ComplexMCP](https://arxiv.org/abs/2605.10787)** | ICML 2026 | Dynamic, interdependent, large-scale MCP tool sandbox for agents. |
+| **[MCP-Bench](https://proceedings.iclr.cc/paper_files/paper/2026/hash/9e4b14eb6f16fe7b5818a8d633a0606a-Abstract-Conference.html)** | ICLR 2026 | Complex real-world MCP-server tasks for tool-using LLM agents. |
+| **[MCP Security Bench](https://arxiv.org/abs/2510.15994)** | ICLR 2026 | End-to-end attack benchmark for MCP-based LLM agents. |
+| **[MCP-SafetyBench](https://openreview.net/forum?id=7XYjeL46co)** | ICLR 2026 | Safety evaluation for agents operating with real-world MCP servers. |
+| **[VitaBench](https://vitabench.github.io/)** | ICLR 2026 | Interactive application benchmark with realistic tools and user dynamics. |
+| **[WideSearch](https://proceedings.iclr.cc/paper_files/paper/2026/hash/1119587863e78451f080da2a768c4935-Abstract-Conference.html)** | ICLR 2026 | Broad information-seeking benchmark for agentic collection tasks. |
+| **[DeepResearch Bench](https://proceedings.iclr.cc/paper_files/paper/2026/hash/465f22be10e07b301c6ed58f0472f704-Abstract-Conference.html)** | ICLR 2026 | Deep research benchmark for planning, retrieval, synthesis, and citation. |
+| **[LLMRouterBench](https://aclanthology.org/2026.findings-acl.1881/)** | Findings of ACL 2026 | Unified benchmark for performance, cost, and latency-aware LLM routing. |
+| **[SwarmBench](https://arxiv.org/abs/2608.30661)** | Findings of EMNLP 2026 | Evaluates accuracy, efficiency, cost, and process quality for agent-swarm orchestration. |
+| **[AlphaEval](https://arxiv.org/abs/2604.12162)** | COLM 2026 | Production-grounded evaluation of complete agent products across company tasks. |
+| **[How Well Do Agentic Skills Work in the Wild](https://arxiv.org/abs/2604.04323)** | COLM 2026 | Benchmarks realistic skill retrieval, selection, and refinement by agents. |
+| **[Cooperative Profiles Predict Multi-Agent LLM Team Performance](https://arxiv.org/abs/2604.20658)** | COLM 2026 | Predicts downstream team quality from low-cost cooperative diagnostics. |
+| **[Calibration is the Bottleneck](https://arxiv.org/abs/2609.00949)** | Findings of EMNLP 2026 | Action-class diagnostic for multi-turn tool-calling and agent calibration failures. |
+| **[How Robust Are Router-LLMs?](https://aclanthology.org/2026.eacl-long.351/)** | EACL 2026 | Tests routing fragility across task categories and safety-sensitive settings. |
+| **[Conjunctive Prompt Attacks in Multi-Agent LLM Systems](https://aclanthology.org/2026.acl-long.1577/)** | ACL 2026 | Evaluates routing-aware attack surfaces across star, chain, and DAG agent topologies. |
+| **[TAMAS](https://aclanthology.org/2026.acl-long.1442/)** | ACL 2026 | Benchmarks adversarial risk in multi-agent LLM systems. |
+| **[BlindGuard](https://aclanthology.org/2026.acl-long.1819/)** | ACL 2026 | Evaluates defense against unknown attacks in LLM-based MAS. |
+| **[Explainable and Fine-Grained Safeguarding of LLM Multi-Agent Systems](https://aclanthology.org/2026.acl-long.1407/)** | ACL 2026 | Fine-grained graph-anomaly perspective on MAS safety. |
+
+**Foundational and broader related work**
 
 1. **[Mind2Web: Towards a Generalist Agent for the Web](https://arxiv.org/abs/2306.06070)** — NeurIPS 2023 Datasets and Benchmarks. `web-agent`
    - Real websites, diverse domains, and instruction-following trajectories.
@@ -461,7 +667,7 @@ If you only read ten papers first:
 16. **[TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks](https://arxiv.org/abs/2412.14161)** — NeurIPS 2025 Datasets and Benchmarks. `digital-worker`
     - Simulated company environment for browsing, coding, running programs, and coworker communication.
 
-17. **[LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing](https://arxiv.org/abs/2601.07206)** — arXiv 2026. `router-benchmark`
+17. **[LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing](https://aclanthology.org/2026.findings-acl.1881/)** — Findings of ACL 2026. `router-benchmark`
     - Large routing benchmark for model-selection research.
 
 18. **[ClawBench: Can AI Agents Complete Everyday Online Tasks?](https://arxiv.org/abs/2604.08523)** — arXiv 2026. `web-agent` `agent-eval`
@@ -486,11 +692,26 @@ If you only read ten papers first:
 11. **[SWE-agent](https://github.com/princeton-nlp/SWE-agent)** — Agent-computer interface for software engineering.
 12. **[RouteLLM](https://github.com/lm-sys/RouteLLM)** — Open-source framework for LLM routing.
 13. **[RouterBench](https://github.com/withmartian/routerbench)** — Data and code for LLM routing benchmarks.
-14. **[ToolBench](https://github.com/OpenBMB/ToolBench)** — Tool-use instruction data and evaluation.
-15. **[BrowserGym / WorkArena](https://github.com/ServiceNow/WorkArena)** — Browser-agent environment and knowledge-work tasks.
-16. **[WebArena](https://github.com/web-arena-x/webarena)** — Self-hosted web-agent benchmark.
-17. **[OSWorld](https://github.com/xlang-ai/OSWorld)** — Desktop-agent benchmark environment.
-18. **[Open Agent Relay](https://github.com/ShakespeareLabs/open-agent-relay)** — Local-first capability relay that lets remote teammates or agents invoke restricted Claude Code and Codex workflows while prompts, credentials, dependencies, and working directories remain on the operator's machine.
+14. **[ACE-Router](https://github.com/euyis1019/ACE-Router)** — History-aware routing for MCP tools and Agent-Web-style ecosystems.
+15. **[Graph-of-Agents](https://github.com/UNITES-Lab/GoA)** — Graph-based multi-agent communication and aggregation.
+16. **[GraphPlanner](https://github.com/ulab-uiuc/GraphPlanner)** — Graph-memory-augmented agentic routing for multi-agent LLMs.
+17. **[BudgetMem](https://github.com/ViktorAxelsen/BudgetMem)** — Budget-tier routing for runtime agent memory.
+18. **[SLM-MUX](https://github.com/slm-mux/SLM-MUX)** — Training-free routing across small language models.
+19. **[GMTRouter](https://github.com/ulab-uiuc/GMTRouter)** — Personalized LLM routing over multi-turn user interactions.
+20. **[Gated-Memory Routing](https://github.com/rajibrhasan/gated-memory-routing)** — Memory-gated routing for efficient multi-agent collaboration.
+21. **[Budget-Aware Agent](https://github.com/google-research/budget-aware-agent)** — Budget tracker and budget-aware test-time scaling for tool-use agents.
+22. **[Corpus2Skill](https://github.com/dukesun99/Corpus2Skill)** — Distills enterprise corpora into navigable skill hierarchies for agents.
+23. **[Skill Usage](https://github.com/UCSB-NLP-Chang/Skill-Usage)** — Realistic benchmark for agent skill retrieval, selection, and refinement.
+24. **[AlphaEval](https://github.com/GAIR-NLP/AlphaEval)** — Production-grounded evaluation framework for complete agent products.
+25. **[LAMO](https://github.com/BigTaige/LAMO)** — Lightweight GUI agent with multi-role orchestration support.
+26. **[Tool-Calling Calibration](https://github.com/fbj2333/tool-calling-calibration)** — Multi-turn tool-calling action-class diagnostic.
+27. **[MCP-Bench](https://github.com/Accenture/mcp-bench)** — MCP-server benchmark for complex tool-using agents.
+28. **[ComplexMCP](https://github.com/ATH-MaaS/complex-mcp)** — Dynamic, interdependent, large-scale MCP tool sandbox.
+29. **[ToolBench](https://github.com/OpenBMB/ToolBench)** — Tool-use instruction data and evaluation.
+30. **[BrowserGym / WorkArena](https://github.com/ServiceNow/WorkArena)** — Browser-agent environment and knowledge-work tasks.
+31. **[WebArena](https://github.com/web-arena-x/webarena)** — Self-hosted web-agent benchmark.
+32. **[OSWorld](https://github.com/xlang-ai/OSWorld)** — Desktop-agent benchmark environment.
+33. **[Open Agent Relay](https://github.com/ShakespeareLabs/open-agent-relay)** — Local-first capability relay that lets remote teammates or agents invoke restricted Claude Code and Codex workflows while prompts, credentials, dependencies, and working directories remain on the operator's machine.
 
 ### Suggested Paper Entry Template
 
@@ -506,7 +727,7 @@ If you only read ten papers first:
 Contributions are welcome. Please include:
 
 - Paper title and link, preferably official proceedings or arXiv `/abs/` link.
-- Venue/year, or mark as `arXiv` if no formal venue is known.
+- Venue/year in the same style as existing entries.
 - One or two tags, such as `model-router`, `tool-use`, `multi-agent`, `workflow-memory`, `benchmark`.
 - A short note explaining the orchestration/scheduling relevance.
 
