@@ -151,6 +151,8 @@ If you only read twelve papers first:
 | **[Scaling Enterprise Agent Routing](https://arxiv.org/abs/2606.17519)** | arXiv 2026 | Studies routing degradation, diagnosis, and recovery in a large production-style agent/tool catalog. |
 | **[The Workload-Router-Pool Architecture](https://arxiv.org/abs/2603.21354)** | arXiv 2026 | Frames LLM serving as workload-aware routing across model pools. |
 | **[Accuracy Is Speed](https://arxiv.org/abs/2604.15732)** | arXiv 2026 | Shows why long-context serving routers should treat accuracy as part of latency. |
+| **[SciΠvot](https://arxiv.org/abs/2610.21082)** | arXiv 2026 | Benchmarks PI-style judgment at pivotal moments for scientific autoresearch agents. |
+| **[Agon](https://arxiv.org/abs/2606.24177)** | arXiv 2026 | Prompt Economy omnidisciplinary autoresearch system; 18 role prompts totaling 230.6 KiB. |
 
 ---
 
@@ -191,6 +193,9 @@ If you only read twelve papers first:
 
 6. **[Position: LLMs Can't Plan, But Can Help Planning in LLM-Modulo Frameworks](https://arxiv.org/abs/2402.01817)** — ICML 2024. `position` `LLM-modulo`
     - Argues for routing LLMs into planner/verifier/tool modules rather than relying on pure generation.
+
+7. **[Agon: An Autonomous Large-Scale Omnidisciplinary Research System Built on Prompt Economy](https://arxiv.org/abs/2606.24177)** — arXiv 2026. `prompt-economy` `autoresearch`
+    - Omnidisciplinary autoresearch system with 18 role prompts totaling 230.6 KiB across 10+ domains.
 
 ---
 
@@ -485,6 +490,9 @@ If you only read twelve papers first:
 
 7. **[LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing](https://aclanthology.org/2026.findings-acl.1881/)** — Findings of ACL 2026. `router-benchmark`
     - Large routing benchmark for model-selection research.
+
+8. **[SciΠvot: Can AI Agents Pivot Like a Principal Investigator?](https://arxiv.org/abs/2610.21082)** — arXiv 2026. `scientific-agent` `PI-judgment`
+    - Benchmarks PI-style judgment at pivotal moments for scientific autoresearch agents; 248 items from real researcher corrections across 26 projects.
 
 ---
 
