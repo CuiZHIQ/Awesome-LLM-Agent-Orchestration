@@ -142,6 +142,7 @@ If you only read twelve papers first:
 
 | Paper | Status | Why track it |
 | --- | --- | --- |
+| **[EC²-Bench (EC2-Bench): Empowering Edge Agents](https://arxiv.org/abs/2610.17816)** | arXiv 2026 | Benchmarks how a small edge agent and a cloud model should split long-horizon agent execution (query routing, per-step routing, edge-controlled delegation, edge-controlled advisory), scoring task performance, cloud cost, and privacy exposure together. |
 | **[Codebook Agent: Amortized Topology Design for LLM Multi-Agent Systems](https://arxiv.org/abs/2609.02264)** | arXiv 2026 | Compresses successful MAS topologies into a small codebook and routes queries to decoded communication graphs. |
 | **[The Differential Reasoning Router](https://arxiv.org/abs/2608.30224)** | arXiv 2026 | Jointly routes between direct reasoning, expensive reasoning, and human escalation in production-style annotation. |
 | **[Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation](https://arxiv.org/abs/2605.05007)** | arXiv 2026 | Studies when not to delegate, a practical counterweight to always-on multi-agent orchestration. |
