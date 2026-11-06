@@ -515,6 +515,7 @@ If you only read twelve papers first:
 21. **[MCP-Bench](https://github.com/Accenture/mcp-bench)** — MCP-server benchmark for complex tool-using agents.
 22. **[ComplexMCP](https://github.com/ATH-MaaS/complex-mcp)** — Dynamic, interdependent, large-scale MCP tool sandbox.
 23. **[ToolBench](https://github.com/OpenBMB/ToolBench)** — Tool-use instruction data and evaluation.
+24. **[LazyMind](https://github.com/LazyAGI/LazyMind)** — Open-source AI Skill Runtime for converting reusable Skills into observable, recoverable state-machine workflows with review checkpoints and versioned artifacts. `workflow-runtime` `skill-runtime`
 
 ### Suggested Paper Entry Template
 
