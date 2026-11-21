@@ -302,6 +302,9 @@ If you only read twelve papers first:
 17. **[INFRAMIND: Infrastructure-Aware Multi-Agent Orchestration](https://arxiv.org/abs/2606.11440)** — arXiv 2026. `infra-aware` `planner-router-scheduler`
     - Conditions topology, role selection, model calls, and queue scheduling on real-time infrastructure state.
 
+18. **[MultiAgent-OPD: End-to-End Training of Hierarchical Multi-Agent Systems with On-Policy Distillation](https://arxiv.org/abs/2610.23234)** — arXiv 2026. `multi-agent` `orchestration-policy`
+    - Jointly trains a Leader to delegate searches and combine evidence within a shared policy, with token-level supervision for the Searchers.
+
 ---
 
 ### Model Routing, Agent Routing, Cascades, and MoE Routers
